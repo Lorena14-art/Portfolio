@@ -19,6 +19,9 @@ $border-radius: 0;
 $btn-border-radius: 0.8rem;   // slightly rounded
 $link-decoration: none;
 
+$input-focus-border-color: $green-500;
+$input-focus-box-shadow: 0 0 0 0.25rem rgba($green-500, 0.25);
+
 @import 'bootstrap/scss/bootstrap';
 
 
@@ -49,8 +52,6 @@ nav a {
   background-color: $green-500;
   border-color: $green-500;
 }
-// Footer
-footer { background: $green-100; }
 
 // Picture Design
 .photo-frame {
@@ -357,3 +358,42 @@ section[id] { scroll-margin-top: 80px; }   // stops the nav from covering sectio
     transform: translateY(-2px);
   }
 }
+
+// contact
+.contact-list {
+  li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba($green-700, 0.2);
+
+    &:first-child { border-top: 1px solid rgba($green-700, 0.2); }
+  }
+}
+
+.contact-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $green-500;
+}
+
+.contact-social {
+  color: $green-700;
+  font-weight: 500;
+  transition: color 0.25s ease;
+
+  &:hover { color: $green-500; }
+}
+
+.contact-form {
+  background: #fff;
+  padding: 2rem;
+  border: 1px solid rgba($green-700, 0.15);
+  border-top: 4px solid $green-700;
+
+  @include media-breakpoint-down(md) { padding: 1.25rem; }
+}
+
+// Footer
+footer { background: $green-100; }
