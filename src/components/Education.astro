@@ -1,0 +1,47 @@
+---
+const education = [
+  {
+    degree: "Bachelor of Science in Information Technology",
+    school: "City College of Calamba",
+    location: "Calamba City, Laguna",
+    years: "2023 – Present",
+    points: [
+      "Currently pursuing a degree in Information Technology.",
+      "Academic focus on information systems, software development, database management, and computer technologies.",
+    ],
+  },
+  {
+    degree: "Bachelor of Science in Information Technology",
+    school: "STI College of Calamba",
+    location: "Calamba City, Laguna",
+    years: "2022-2023",
+    points: ["Dean's Lister – First Year"],
+  },
+  {
+    degree: "Senior High School",
+    school: "STI College of Calamba",
+    location: "Calamba City, Laguna",
+    years: "2019 – 2022",
+    points: ["Academic Excellence Awardee"],
+  },
+];
+---
+
+<section id="education" class="py-5">
+  <h2 class="display-5 mb-5">Education</h2>
+
+  <div class="timeline">
+    {education.map((item) => (
+      <article class="timeline-item">
+        <span class="badge text-bg-primary mb-2">{item.years}</span>
+        <h3 class="h5 mb-1">{item.degree}</h3>
+        <p class="mb-2 text-muted">
+          <strong>{item.school}</strong> · {item.location}
+        </p>
+        <ul class="mb-0">
+          {item.points.map((point) => <li>{point}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

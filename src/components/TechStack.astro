@@ -1,0 +1,40 @@
+---
+const stacks = [
+  {
+    title: "Design & Multimedia",
+    description: "Tools I use to turn ideas into visuals and video.",
+    items: ["Canva", "Adobe Photoshop", "Adobe Premiere Pro", "CapCut Pro", "UI / UX Design"],
+  },
+  {
+    title: "Front-End Development",
+    description: "What I use to build responsive websites.",
+    items: ["HTML", "CSS", "JavaScript", "SCSS", "Bootstrap", "Astro"],
+  },
+  {
+    title: "Tools & Workflow",
+    description: "How I work and collaborate.",
+    items: ["Git & GitHub", "VS Code", "Facebook Live / Livestreaming", "Online Collaboration"],
+  },
+];
+---
+
+<section id="tech-stack" class="py-5">
+  <h2 class="display-5 mb-5">Tech Stack</h2>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {stacks.map((stack) => (
+      <div class="col">
+        <article class="stack-card h-100 p-4">
+          <h3 class="h5 mb-1">{stack.title}</h3>
+          <p class="text-muted mb-4">{stack.description}</p>
+
+          <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
+            {stack.items.map((item) => (
+              <li class="stack-chip">{item}</li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    ))}
+  </div>
+</section>

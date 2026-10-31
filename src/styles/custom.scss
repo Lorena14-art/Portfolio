@@ -1,0 +1,359 @@
+// Override BEFORE importing bootstrap
+// Green palette
+$green-900: #14291f;
+$green-700: #1f5c3f;
+$green-500: #2f8f5b;
+$green-300: #9fd3b0;
+$green-100: #e8f3ea;
+
+$primary: $green-700;
+$secondary: $green-500;
+$body-bg: #f5faf6;
+$body-color: $green-900;
+$link-color: $green-700;
+$link-hover-color: $green-500;
+
+$font-family-sans-serif: 'DM Sans', system-ui, sans-serif;
+$headings-font-family: 'Fraunces', Georgia, serif;
+$border-radius: 0;
+$btn-border-radius: 0.8rem;   // slightly rounded
+$link-decoration: none;
+
+@import 'bootstrap/scss/bootstrap';
+
+
+// Nav links: color change, no underline
+nav a {
+  text-decoration: none;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: $green-500;
+    text-decoration: none;
+  }
+}
+
+// Buttons: color change + zoom
+.btn {
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.25s ease,
+              border-color 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    text-decoration: none;
+    transform: scale(1.06);   // zoom in
+  }
+}
+
+&.btn-primary:hover {
+  background-color: $green-500;
+  border-color: $green-500;
+}
+// Footer
+footer { background: $green-100; }
+
+// Picture Design
+.photo-frame {
+   max-width: 450px; 
+  overflow: hidden;
+
+  img {
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.08);
+  }
+}
+
+// Site Header and Smooth Scrolling
+.site-header {
+  background: rgba($body-bg, 0.9);   // slightly see-through
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba($green-700, 0.12);
+  z-index: 1030;                     // stays above page content
+}
+
+html { scroll-behavior: smooth; }
+
+section[id] { scroll-margin-top: 80px; }   // stops the nav from covering section headings
+
+// Education Timeline
+.timeline {
+  border-left: 2px solid $green-300;
+  padding-left: 1.75rem;
+  max-width: 800px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+
+  &:last-child { padding-bottom: 0; }
+
+  // the dot on the line
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(-1.75rem - 1px);
+    top: 0.35rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: $green-700;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  // dot grows and glows on hover or when open
+  &:hover::before,
+  &.is-open::before {
+    transform: translateX(-50%) scale(1.5);
+    box-shadow: 0 0 0 6px rgba($green-300, 0.5);
+  }
+}
+
+// the clickable header
+.timeline-toggle {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: $green-700;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover .h5 { color: $green-500; }
+
+  &:focus-visible {
+    outline: 2px solid $green-500;
+    outline-offset: 4px;
+  }
+}
+
+.timeline-item.is-open .timeline-toggle::after { content: "–"; }
+
+// smooth expand / collapse (only active once JavaScript has loaded)
+.timeline.is-ready .timeline-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+
+  > div { overflow: hidden; min-height: 0; }
+}
+
+.timeline.is-ready .timeline-item.is-open .timeline-details {
+  grid-template-rows: 1fr;
+}
+
+// scroll reveal
+.timeline-item.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item.reveal,
+  .timeline-item::before,
+  .timeline.is-ready .timeline-details {
+    transition: none;
+  }
+} 
+
+// certifications
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid rgba($green-700, 0.15);
+  border-top: 4px solid $green-700;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              border-top-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-top-color: $green-500;
+    box-shadow: 0 12px 28px rgba($green-900, 0.12);
+  }
+}
+
+.cert-link {
+  margin-top: auto;   // keeps the button at the bottom of every card
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: $green-700;
+  font-weight: 500;
+  transition: color 0.25s ease;
+
+  &:hover { color: $green-500; }
+}
+
+// projects
+.project-tabs {
+  gap: 0.5rem;
+
+  .nav-link {
+    color: $green-700;
+    border: 1px solid $green-700;
+    transition: background-color 0.25s ease, color 0.25s ease;
+
+    &:hover { background: $green-100; }
+
+    &.active {
+      background: $green-700;
+      color: #fff;
+    }
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid rgba($green-700, 0.15);
+  border-top: 4px solid $green-700;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              border-top-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-top-color: $green-500;
+    box-shadow: 0 12px 28px rgba($green-900, 0.12);
+  }
+}
+
+.project-thumb {
+  aspect-ratio: 4 / 3;
+  background: $green-100;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+}
+
+.project-card:hover .project-thumb img { transform: scale(1.05); }
+
+.project-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: $green-700;
+  font-family: $headings-font-family;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.project-link {
+  margin-top: auto;
+  color: $green-700;
+  font-weight: 500;
+  transition: color 0.25s ease;
+
+  &:hover { color: $green-500; }
+}
+
+.project-role {
+  color: $green-500;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.project-links { margin-top: auto; }
+
+// work experience
+.work-list { max-width: none; }          // use the full container width
+
+.work-item {
+  display: grid;
+  grid-template-columns: 1fr;            // stacked on phones
+  gap: 0.75rem;
+  padding: 2.5rem 1rem;                  // side padding so the hover highlight has breathing room
+  border-top: 1px solid rgba($green-700, 0.2);
+  transition: background-color 0.25s ease;
+
+  &:last-child { border-bottom: 1px solid rgba($green-700, 0.2); }
+
+  h3 { transition: color 0.25s ease; }
+
+  &:hover {
+    background-color: rgba($green-100, 0.6);
+    h3 { color: $green-500; }
+  }
+
+  // dates on the left, details on the right from tablet up
+  @include media-breakpoint-up(md) {
+    grid-template-columns: 220px 1fr;    // narrower date column
+    gap: 2rem;                           // smaller gap
+  }
+}
+
+// tech stack
+.stack-card {
+  background: #fff;
+  border: 1px solid rgba($green-700, 0.15);
+  border-top: 4px solid $green-700;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              border-top-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-top-color: $green-500;
+    box-shadow: 0 12px 28px rgba($green-900, 0.12);
+  }
+}
+
+.stack-chip {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+  color: $green-700;
+  background: $green-100;
+  border: 1px solid rgba($green-700, 0.2);
+  border-radius: 50rem;
+  transition: background-color 0.25s ease, color 0.25s ease,
+              transform 0.25s ease;
+
+  &:hover {
+    background: $green-700;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}

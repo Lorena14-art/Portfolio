@@ -1,0 +1,120 @@
+---
+const certifications = [
+  {
+    title: "Claude Code in Action",
+    issuer: "Anthropic",
+    date: "March 2026",
+    description: "Certificate of completion for the Claude Code in Action course.",
+    image: "/certificates/claude-code-in-action.jpg",
+    link: "https://verify.skilljar.com/c/3zi8iy92cm6r",
+    linkText: "Verify credential ↗",
+  },
+  {
+    title: "Pathway to Success: Empowering Future IT Professionals Through Micro-Credentials",
+    issuer: "City College of Calamba",
+    date: "September 2026",
+    description: "Certificate of participation in a webinar hosted by the Department of Computing and Informatics.",
+    image: "/certificates/pathway-to-success.jpg",
+    link: "/certificates/pathway-to-success.pdf",
+  },
+  {
+    title: "Effective Speaking and Listening Skills (Microcertificate)",
+    issuer: "Wadhwani Foundation",
+    date: "September 2026",
+    description: "Self-paced online learning, 9.75 hours of training.",
+    image: "/certificates/effective-speaking-micro.jpg",
+    link: "/certificates/effective-speaking-micro.pdf",
+  },
+  {
+    title: "Effective Speaking and Listening Skills (Basic)",
+    issuer: "Wadhwani Foundation",
+    date: "October 2024",
+    description: "Certificate of Completion at the Basic level, 9.75 hours of training.",
+    image: "/certificates/effective-speaking-basic.jpg",
+    link: "/certificates/effective-speaking-basic.pdf",
+  },
+  {
+    title: "Impactful Writing Skills (Basic)",
+    issuer: "Wadhwani Foundation",
+    date: "November 2024",
+    description: "Certificate of Completion at the Basic level, 5.75 hours of training.",
+    image: "/certificates/impactful-writing-basic.jpg",
+    link: "/certificates/impactful-writing-basic.pdf",
+  },
+];
+---
+
+<section id="certifications" class="py-5">
+  <h2 class="display-5 mb-5">Certifications</h2>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {certifications.map((cert) => (
+      <div class="col">
+        <article class="cert-card h-100 p-4">
+          <span class="badge text-bg-primary mb-3">{cert.date}</span>
+          <h3 class="h5 mb-1">{cert.title}</h3>
+          <p class="text-muted mb-3"><strong>{cert.issuer}</strong></p>
+          <p class="mb-3">{cert.description}</p>
+
+          <button
+            type="button"
+            class="cert-link"
+            data-bs-toggle="modal"
+            data-bs-target="#certModal"
+            data-title={cert.title}
+            data-image={cert.image}
+            data-link={cert.link}
+            data-link-text={cert.linkText ?? "Open PDF ↗"}
+          >
+            View certificate ↗
+          </button>
+        </article>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- One shared modal for all certificates -->
+<div class="modal fade" id="certModal" tabindex="-1" aria-labelledby="certModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="certModalTitle"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="certModalImg" class="img-fluid" alt="" />
+      </div>
+      <div class="modal-footer">
+        <a id="certModalLink" class="btn btn-primary" target="_blank" rel="noopener noreferrer"></a>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+  const modal = document.getElementById('certModal');
+
+  modal?.addEventListener('show.bs.modal', (event: any) => {
+    const trigger = event.relatedTarget as HTMLElement | null;
+    if (!trigger) return;
+
+    const title = trigger.dataset.title ?? '';
+    const image = trigger.dataset.image ?? '';
+    const link = trigger.dataset.link ?? '#';
+    const linkText = trigger.dataset.linkText ?? 'Open PDF ↗';
+
+    document.getElementById('certModalTitle')!.textContent = title;
+
+    const img = document.getElementById('certModalImg') as HTMLImageElement;
+    img.src = image;
+    img.alt = `${title} certificate`;
+
+    const a = document.getElementById('certModalLink') as HTMLAnchorElement;
+    a.href = link;
+    a.textContent = linkText;
+  });
+</script>

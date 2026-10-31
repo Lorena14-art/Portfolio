@@ -1,0 +1,63 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import { projects } from "../data/projects.js";
+
+const categories = [
+  { id: "graphic-design", label: "Graphic Design", linkText: "View design ↗" },
+  { id: "programming", label: "Programming", linkText: "View code ↗" },
+];
+---
+
+<section id="projects" class="py-5">
+  <h2 class="display-5 mb-4">Projects</h2>
+
+  <ul class="nav nav-pills project-tabs mb-4" role="tablist">
+    {categories.map((cat, i) => (
+      <li class="nav-item" role="presentation">
+        <button
+          class:list={["nav-link", { active: i === 0 }]}
+          id={`tab-${cat.id}`}
+          data-bs-toggle="pill"
+          data-bs-target={`#pane-${cat.id}`}
+          type="button"
+          role="tab"
+          aria-controls={`pane-${cat.id}`}
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {cat.label}
+        </button>
+      </li>
+    ))}
+  </ul>
+
+  <div class="tab-content">
+    {categories.map((cat, i) => {
+      const items = projects.filter((p) => p.category === cat.id);
+      return (
+        <div
+          class:list={["tab-pane fade", { "show active": i === 0 }]}
+          id={`pane-${cat.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${cat.id}`}
+          tabindex="0"
+        >
+          {items.length > 0 ? (
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+              {items.map((p) => (
+                <div class="col">
+                  <ProjectCard {...p} linkText={cat.linkText} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="text-muted">Projects coming soon.</p>
+          )}
+        </div>
+      );
+    })}
+  </div>
+</section>
+
+<script>
+  import "bootstrap/dist/js/bootstrap.bundle.min.js";
+</script>

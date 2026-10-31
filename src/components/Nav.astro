@@ -1,0 +1,41 @@
+<header class="sticky-top site-header">
+  <nav class="navbar navbar-expand-lg container py-3">
+    <a class="navbar-brand h5 mb-0" href="#home">Lorena Delejero</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+      aria-controls="navMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-lg-4">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certifications">Certification</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tech-stack">Tech Stacks</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#works">Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+  // close the mobile menu after tapping a link
+  document.querySelectorAll('#navMenu .nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      document.getElementById('navMenu')?.classList.remove('show');
+    });
+  });
+</script>

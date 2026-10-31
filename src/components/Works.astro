@@ -1,0 +1,58 @@
+---
+const works = [
+  {
+    role: "Multimedia Artist",
+    org: "Management Information Systems Division (MISD), City College of Calamba",
+    period: "August 2026 – February 2027",
+    points: [
+      "Prepare and edit student ID-related digital materials, including photographs, signatures, and QR-related assets.",
+      "Assist with the institution's Facebook Live coverage of flag ceremonies and other school activities.",
+      "Contribute ideas and content planning for promotional video projects.",
+      "Support multimedia and digital communication tasks within the institution.",
+    ],
+  },
+  {
+    role: "Service Crew",
+    org: "McDonald's Georgetown",
+    period: "September 2025 – February 2026",
+    points: [
+      "Delivered customer service in a fast-paced environment while following operational and service standards.",
+      "Coordinated with team members to support daily operations and maintain an organized work area.",
+    ],
+  },
+  {
+    role: "Cleaning and Maintenance Staff",
+    org: "Wonderpool Hotspring Resort",
+    location: "Calamba City, Laguna",
+    period: "2023 – January 2024",
+    points: [
+      "Performed routine cleaning and maintenance tasks to help maintain safe, orderly facilities.",
+      "Demonstrated reliability, attention to detail, and teamwork in daily operations.",
+    ],
+  },
+];
+---
+
+<section id="works" class="py-5">
+  <h2 class="display-5 mb-5">Work Experience</h2>
+
+  <div class="work-list">
+    {works.map((job) => (
+      <article class="work-item">
+        <div class="work-period">
+          <span class="badge text-bg-primary">{job.period}</span>
+        </div>
+
+        <div class="work-details">
+          <h3 class="h5 mb-1">{job.role}</h3>
+          <p class="text-muted mb-3">
+            <strong>{job.org}</strong>{job.location && <> · {job.location}</>}
+          </p>
+          <ul class="mb-0">
+            {job.points.map((point) => <li>{point}</li>)}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

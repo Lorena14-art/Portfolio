@@ -1,0 +1,47 @@
+---
+const {
+  title,
+  role,
+  description,
+  image,
+  link,
+  github,
+  tags = [],
+  linkText = "View project ↗",
+} = Astro.props;
+---
+
+<article class="project-card h-100">
+  <div class="project-thumb">
+    {image
+      ? <img src={image} alt={title} loading="lazy" />
+      : <span class="project-placeholder">{title}</span>}
+  </div>
+
+  <div class="project-body p-4">
+    <h3 class="h5 mb-1">{title}</h3>
+    {role && <p class="project-role mb-2">{role}</p>}
+    <p class="mb-3">{description}</p>
+
+    {tags.length > 0 && (
+      <ul class="list-unstyled d-flex flex-wrap gap-2 mb-3">
+        {tags.map((tag) => <li class="badge text-bg-secondary">{tag}</li>)}
+      </ul>
+    )}
+
+    {(link || github) && (
+      <div class="project-links d-flex flex-wrap gap-3">
+        {link && (
+          <a href={link} target="_blank" rel="noopener noreferrer" class="project-link">
+            {github ? "Live site ↗" : linkText}
+          </a>
+        )}
+        {github && (
+          <a href={github} target="_blank" rel="noopener noreferrer" class="project-link">
+            GitHub ↗
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</article>
