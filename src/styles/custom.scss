@@ -77,6 +77,31 @@ nav a {
   z-index: 1030;                     // stays above page content
 }
 
+@media (max-width: 991.98px) {
+  .site-header .navbar {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .site-header .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .site-header .navbar-collapse {
+    flex-basis: 100%;
+    padding-top: 0.75rem;
+  }
+
+  .site-header .navbar-nav {
+    gap: 0 !important;
+  }
+
+  .site-header .nav-link {
+    padding: 0.65rem 0.25rem;
+    border-top: 1px solid rgba($green-700, 0.12);
+  }
+}
+
 html { scroll-behavior: smooth; }
 
 section[id] { scroll-margin-top: 80px; }   // stops the nav from covering section headings
@@ -343,21 +368,57 @@ section[id] { scroll-margin-top: 80px; }   // stops the nav from covering sectio
   }
 }
 
+.stack-chip-item {
+  position: relative;
+}
+
 .stack-chip {
+  display: inline-block;
   padding: 0.35rem 0.85rem;
+  font: inherit;
   font-size: 0.9rem;
   color: $green-700;
   background: $green-100;
   border: 1px solid rgba($green-700, 0.2);
   border-radius: 50rem;
+  cursor: help;
   transition: background-color 0.25s ease, color 0.25s ease,
               transform 0.25s ease;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background: $green-700;
     color: #fff;
     transform: translateY(-2px);
   }
+}
+
+.stack-tooltip {
+  position: absolute;
+  z-index: 2;
+  bottom: calc(100% + 0.6rem);
+  left: 50%;
+  width: max-content;
+  max-width: min(18rem, calc(100vw - 3rem));
+  padding: 0.55rem 0.75rem;
+  color: #fff;
+  background: $green-900;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: left;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 0.25rem);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+
+.stack-chip-item:hover .stack-tooltip,
+.stack-chip-item:focus-within .stack-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 
 // contact

@@ -1,18 +1,39 @@
 export const projects = [
   // ---------- Graphic Design ----------
   {
-    title: "Brand Identity Concept",
-    description:
-      "Logo, color palette, and brand guidelines for a local business.",
+    title: "Book Covers",
+    description: "A collection of book cover designs.",
     category: "graphic-design",
-    link: "https://www.behance.net/yourname", // optional
-    tags: ["Branding", "Logo"],
+    link: "https://drive.google.com/drive/folders/1HW6A8ouoVC_ydW0iBOMjg7wy-Av452Qm?usp=sharing",
+    tags: ["Book Cover Design"],
   },
   {
-    title: "Social Media Graphics",
-    description: "A set of promotional posts designed for a consistent feed.",
+    title: "Flyers",
+    description: "A collection of flyer designs.",
     category: "graphic-design",
-    tags: ["Social Media", "Canva"],
+    link: "https://drive.google.com/drive/folders/1JSX9qnSBzOb4xdsv4Laop-E0xlV31kjR?usp=drive_link",
+    tags: ["Flyer Design"],
+  },
+  {
+    title: "PowerPoints",
+    description: "Presentation designs created in PowerPoint.",
+    category: "graphic-design",
+    link: "https://drive.google.com/drive/folders/1o6Nv4dHn3NEEygSQjiQ2uE6WL9-Y7X3Y?usp=drive_link",
+    tags: ["Presentation Design"],
+  },
+  {
+    title: "Pubmats",
+    description: "A collection of publication material designs.",
+    category: "graphic-design",
+    link: "https://drive.google.com/drive/folders/13x1NXcnr1kOg3ri36a5QtwTsXsP_APSS?usp=drive_link",
+    tags: ["Publication Materials"],
+  },
+  {
+    title: "Video Editing",
+    description: "A collection of edited video projects.",
+    category: "graphic-design",
+    link: "https://drive.google.com/drive/folders/1lynJuLrFFXNwa1fRAVo3_jkIrn-0hE6o?usp=drive_link",
+    tags: ["Video Editing"],
   },
 
   // ---------- Programming ----------
@@ -32,5 +53,24 @@ export const projects = [
     link: "https://cwcportal.com/",
     github: "https://github.com/aLexazami/cwc-website",
     tags: ["Front-End", "Research", "Responsive Design"], // add the tools you actually used
+  },
+
+  {
+    title: "Dotly",
+    role: "Developer",
+    description: "A simple, friendly task manager. Dot it, done.",
+    category: "programming",
+    link: "https://dotly-dot-it-done.vercel.app/",
+    github: "https://github.com/Lorena14-art/Dotly-Dot-it-done",
+    tags: [
+      "React 19",
+      "TypeScript 7",
+      "Vite 8",
+      "Tailwind CSS 4",
+      "vite-plugin-pwa",
+      "Local Storage",
+      "Vitest",
+      "Oxlint",
+    ],
   },
 ];

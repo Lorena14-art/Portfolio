@@ -3,17 +3,42 @@ const stacks = [
   {
     title: "Design & Multimedia",
     description: "Tools I use to turn ideas into visuals and video.",
-    items: ["Canva", "Adobe Photoshop", "Adobe Premiere Pro", "CapCut Pro", "UI / UX Design"],
+    items: [
+      { name: "Canva", description: "Create graphics, presentations, and other visual content." },
+      { name: "Adobe Photoshop", description: "Edit and enhance photos and raster graphics." },
+      { name: "Adobe Premiere Pro", description: "Edit and assemble video projects." },
+      { name: "CapCut Pro", description: "Edit videos and add effects, captions, and transitions." },
+      { name: "UI / UX Design", description: "Plan interfaces and user flows to make products clear and easy to use." },
+    ],
   },
   {
     title: "Front-End Development",
     description: "What I use to build responsive websites.",
-    items: ["HTML", "CSS", "JavaScript", "SCSS", "Bootstrap", "Astro"],
+    items: [
+      { name: "HTML", description: "Define the structure and content of web pages." },
+      { name: "CSS", description: "Style web pages and create responsive layouts." },
+      { name: "JavaScript", description: "Add behavior and interactivity to web applications." },
+      { name: "React 19", description: "Build the user interface with reusable components." },
+      { name: "TypeScript 7", description: "Add static types to JavaScript app logic to catch errors earlier." },
+      { name: "Astro", description: "Build fast websites using components and static page generation." },
+      { name: "Vite 8", description: "Run the development server and bundle files for production." },
+      { name: "Tailwind CSS 4", description: "Style interfaces using utility classes directly in markup." },
+      { name: "SCSS", description: "Write organized stylesheets with Sass features such as variables and nesting." },
+      { name: "Bootstrap", description: "Use ready-made layout utilities and responsive interface components." },
+      { name: "vite-plugin-pwa", description: "Add installable Progressive Web App features and offline support." },
+    ],
   },
   {
     title: "Tools & Workflow",
-    description: "How I work and collaborate.",
-    items: ["Git & GitHub", "VS Code", "Facebook Live / Livestreaming", "Online Collaboration"],
+    description: "Tools I use to build, test, and collaborate.",
+    items: [
+      { name: "Git & GitHub", description: "Track code changes and host or collaborate on repositories." },
+      { name: "VS Code", description: "Write, navigate, and debug code in a development editor." },
+      { name: "Vitest", description: "Run automated tests for JavaScript and TypeScript code." },
+      { name: "Oxlint", description: "Check code for lint issues and maintain consistent practices." },
+      { name: "Facebook Live / Livestreaming", description: "Broadcast events and activities to an online audience." },
+      { name: "Online Collaboration", description: "Coordinate work and share updates with others using online tools." },
+    ],
   },
 ];
 ---
@@ -22,15 +47,31 @@ const stacks = [
   <h2 class="display-5 mb-5">Tech Stack</h2>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {stacks.map((stack) => (
+    {stacks.map((stack, stackIndex) => (
       <div class="col">
         <article class="stack-card h-100 p-4">
           <h3 class="h5 mb-1">{stack.title}</h3>
           <p class="text-muted mb-4">{stack.description}</p>
 
           <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
-            {stack.items.map((item) => (
-              <li class="stack-chip">{item}</li>
+            {stack.items.map((item, itemIndex) => (
+              <li class="stack-chip-item">
+                <button
+                  type="button"
+                  class="stack-chip"
+                  aria-label={`${item.name}: ${item.description}`}
+                  aria-describedby={`tech-tip-${stackIndex}-${itemIndex}`}
+                >
+                  {item.name}
+                </button>
+                <span
+                  id={`tech-tip-${stackIndex}-${itemIndex}`}
+                  class="stack-tooltip"
+                  role="tooltip"
+                >
+                  {item.description}
+                </span>
+              </li>
             ))}
           </ul>
         </article>
