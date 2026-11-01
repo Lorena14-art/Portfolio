@@ -48,8 +48,8 @@ const certifications = [
   <h2 class="display-5 mb-5">Certifications</h2>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {certifications.map((cert) => (
-      <div class="col">
+    {certifications.map((cert, index) => (
+      <div class="col" data-certification-item data-index={index} hidden={index >= 3}>
         <article class="cert-card h-100 p-4">
           <span class="badge text-bg-primary mb-3">{cert.date}</span>
           <h3 class="h5 mb-1">{cert.title}</h3>
@@ -72,6 +72,16 @@ const certifications = [
       </div>
     ))}
   </div>
+  {certifications.length > 3 && (
+    <button
+      type="button"
+      class="btn btn-outline-primary d-block mx-auto mt-4"
+      data-certifications-see-more
+      aria-expanded="false"
+    >
+      See more
+    </button>
+  )}
 </section>
 
 <!-- One shared modal for all certificates -->
@@ -95,6 +105,16 @@ const certifications = [
 
 <script>
   import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+  const certificationsButton = document.querySelector('[data-certifications-see-more]');
+  certificationsButton?.addEventListener('click', () => {
+    const expanded = certificationsButton.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll<HTMLElement>('[data-certification-item]').forEach((item) => {
+      item.hidden = expanded && Number(item.dataset.index) >= 3;
+    });
+    certificationsButton.setAttribute('aria-expanded', String(!expanded));
+    certificationsButton.textContent = expanded ? 'See more' : 'See less';
+  });
 
   const modal = document.getElementById('certModal');
 

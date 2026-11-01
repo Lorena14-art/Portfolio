@@ -4,7 +4,7 @@ import { projects } from "../data/projects.js";
 
 const categories = [
   { id: "graphic-design", label: "Graphic Design", linkText: "View design ↗" },
-  { id: "programming", label: "Programming", linkText: "View code ↗" },
+  { id: "programming", label: "Programming", linkText: "View site ↗" },
 ];
 ---
 
@@ -42,13 +42,25 @@ const categories = [
           tabindex="0"
         >
           {items.length > 0 ? (
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-              {items.map((p) => (
-                <div class="col">
+            <>
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {items.map((p, index) => (
+                <div class="col" data-project-item data-index={index} hidden={index >= 3}>
                   <ProjectCard {...p} linkText={cat.linkText} />
                 </div>
               ))}
-            </div>
+              </div>
+              {items.length > 3 && (
+                <button
+                  type="button"
+                  class="btn btn-outline-primary d-block mx-auto mt-4"
+                  data-see-more
+                  aria-expanded="false"
+                >
+                  See more
+                </button>
+              )}
+            </>
           ) : (
             <p class="text-muted">Projects coming soon.</p>
           )}
@@ -60,4 +72,18 @@ const categories = [
 
 <script>
   import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+  document.querySelectorAll("[data-see-more]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const pane = button.closest(".tab-pane");
+      if (!pane) return;
+
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      pane.querySelectorAll<HTMLElement>("[data-project-item]").forEach((item) => {
+        item.hidden = expanded && Number(item.dataset.index) >= 3;
+      });
+      button.setAttribute("aria-expanded", String(!expanded));
+      button.textContent = expanded ? "See more" : "See less";
+    });
+  });
 </script>

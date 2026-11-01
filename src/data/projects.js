@@ -41,7 +41,8 @@ export const projects = [
     title: "Portfolio Website",
     description: "This site, built with Astro, Bootstrap, and SCSS.",
     category: "programming",
-    link: "https://github.com/yourname/portfolio",
+    link: "https://portfolio-one-blond-aa7fm86r71.vercel.app/",
+    github: "https://github.com/Lorena14-art/Portfolio",
     tags: ["Astro", "SCSS", "Bootstrap"],
   },
   {
@@ -72,5 +73,38 @@ export const projects = [
       "Vitest",
       "Oxlint",
     ],
+  },
+  {
+    title: "Expense Tracker",
+    role: "Developer",
+    description:
+      "A personal budgeting dashboard for tracking expenses, recurring costs, and monthly spending patterns.",
+    category: "programming",
+    link: "https://expense-tracker-five-kappa-76.vercel.app/",
+    github: "https://github.com/Lorena14-art/ExpenseTracker",
+    tags: [
+      "React 19",
+      "Vite 8",
+      "Tailwind CSS 4",
+      "Dexie",
+      "IndexedDB",
+      "React Hook Form",
+      "Zod",
+      "Recharts",
+      "ExcelJS",
+      "jsPDF",
+      "Vitest",
+      "Oxlint",
+    ],
+  },
+  {
+    title: "Weatherly",
+    role: "Developer",
+    description:
+      "A weather app built with vanilla TypeScript and CSS, using Open-Meteo forecast and geocoding APIs.",
+    category: "programming",
+    link: "https://weatherly-gamma-ten.vercel.app/",
+    github: "https://github.com/Lorena14-art/Weatherly",
+    tags: ["Vite", "TypeScript", "Open-Meteo", "Zod", "Vitest", "MSW"],
   },
 ];
